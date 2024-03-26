@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+
+{% block header%}
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock%}
+
+{% block content%}
+    
+    <div class="container">
+            <h2 class="cover-heading">What is League of Customs?</h2>
+            <p class="lead">
+                League of Customs is a website that helps streamline the process of matchmaking in custom games for League of Legends.
+                If you are a League of Legends player, you know how difficult it can be to come up with a balance set of teams among your friends. 
+                League of Customs allows you to create a custom game and invite your friends to join. You can choose a variety of options to customize your game,
+                Matchmaking based on your public game history, or even your personality types. 
+            </p>
+            <h2 class="cover-heading">How does it work?</h2>
+            <p class="lead">
+                League of Customs uses the Riot Games API to gather information about your game history. 
+                It then uses this information to create a matchmaking algorithm that will create balanced teams based on your game history. 
+                You can also choose to create and account and save your personality test scores. League of Customs will then use this 
+                information to create balanced teams based on your personality types.
+            </p>
+            <h2 class="cover-heading">How do I get started?</h2>
+            <p class="lead">
+                To get started, simply click the "Create a Lobby" button. You will be prompted to enter your summoner name. 
+                Once you have entered your summoner name, you will be able to create a Lobby. You can then invite your friends to join your game, through lobby link. 
+                Your friends will be prompted to enter their summoner name, and then they will be able to join your lobby. Or you can choose to create a lobby with
+                and matchmake using just their summoner names. 
+            </p>
+            <div class="d-flex gap-3 justify-content-center py-5">
+              <a href="/lobby/createLobby" class="btn btn-primary d-inline-flex align-items-center">
+                <button class="btn btn-primary d-inline-flex align-items-center" type="button-link" id="createLobbyButton">
+                  Create a Lobby
+                </button>
+              </a>
+                <button class="btn btn-outline-secondary d-inline-flex align-items-center" type="button" href="auth/register">
+                  Create a Account
+                </button>
+              </div>
+                
+    </div>
+{% endblock%}
+```

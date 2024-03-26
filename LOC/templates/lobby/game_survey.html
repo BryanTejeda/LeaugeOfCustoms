@@ -1,0 +1,76 @@
+<!-- FILEPATH: /c:/Users/Bryan/PycharmProjects/LeaugeOfCustoms/LOC/templates/lobby/game_survey.html -->
+{% extends 'base.html' %}
+
+<h1>Post-Game Survey</h1>
+
+{% block content %}
+
+<div class="container">
+  <h2>Post-Game Survey</h2>
+  <p>Please fill out the survey below to help us improve the game experience. Feel free to update this while expereincing grey screen in the game.</p>
+
+  <div class="form-group">
+    <form  method="POST">
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required class="form-control">
+
+    <label for="game_result">Game Result:</label>
+    <select id="game_result" name="game_result" required class="form-control"> 
+        <option value="win">Win</option>
+        <option value="loss">Loss</option>
+        <option value="draw">Draw</option>
+    </select>
+
+    <label>How do you feel after the game?</label>
+    <br>
+    <div class="form-check form-check-inline">
+        <img src="https://img.icons8.com/ios/50/000000/sad.png" alt="sad" width="50" height="50">
+        <input class="form-check-input" type="radio" name="feelings" id="sad" value="1" required>
+        <label for="sad">1</label>
+        <input class="form-check-input" type="radio" name="feelings" id="feeling2" value="2" required>
+        <label for="feeling2"> 2</label>
+        <input class="form-check-input" type="radio" name="feelings" id="feeling3" value="3" required>
+        <label for="feeling3">3</label>
+        <input class="form-check-input" type="radio" name="feelings" id="feeling4" value="4" required>
+        <label for="feeling4"> 4</label>
+        <input class="form-check-input" type="radio" name="feelings" id="feeling5" value="5" required>
+        <label for="feeling5">5</label>
+        <input class="form-check-input" type="radio" name="feelings" id="feeling6" value="6" required>
+        <label for="feeling6"> 6</label>
+        <input class="form-check-input" type="radio" name="feelings" id="feeling7" value="7" required>
+        <label for="feeling7"> 7</label>
+        <input class="form-check-input" type="radio" name="feelings" id="feeling8" value="8" required>
+        <label for="feeling8"> 8</label>
+        <input class="form-check-input" type="radio" name="feelings" id="feeling9" value="9" required>
+        <label for="feeling8"> 9</label>
+        <input class="form-check-input" type="radio" name="feelings" id="happy" value="10" required>    
+        <label for="happy">10</label>
+        <img src="https://img.icons8.com/ios/50/000000/happy.png" alt="happy" width="50" height="50">
+    </div>
+    <br>
+    <label for="myteam">How do you feel about your team?</label>
+    <input type="range" id="myteam" name="myteam" required min="1" max="10" value="5" class="form-control-range">
+    <label id="myteamLabel" for="myteam"></label>
+    <br>
+    <label for="oppteam">How do you feel about the opposing team?</label>
+    <input type="range" id="oppteam" name="oppteam" required min="1" max="10" value="5" class="form-control-range">
+
+    <label for="teamBalance">How balanced do you think teams were?</label>
+    <input type="range" id="teamBalance" name="teamBalance" required min="1" max="10" value="5" class="form-control-range">
+    
+    <button type="submit" class"form-control">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+<script>
+    var slider = document.getElementById("myteam");
+    var output = document.getElementById("myteamLabel");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+        output.innerHTML = String(this.value);
+    };
+</script>

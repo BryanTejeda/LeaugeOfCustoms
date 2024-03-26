@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS post;
+
+CREATE TABLE user (
+email TEXT PRIMARY KEY,
+pass TEXT NOT NULL
+);
+
+CREATE TABLE lobby (
+id SERIAL PRIMARY KEY,
+creator TEXT NOT NULL,
+alive INT NOT NULL
+);
+
+    

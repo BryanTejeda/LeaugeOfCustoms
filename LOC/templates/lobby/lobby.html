@@ -1,0 +1,126 @@
+{% extends'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Player Input{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+        <div class="row align-items-start">
+            <div class="col">
+                <ul class="list-group">
+                 
+                    {%  for item in firsthalf %}
+                        <li class="list-group-item">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">{{ item }}</span>
+                                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                    {%  endfor %}
+                    </ul>
+            </div>
+
+        <div class="col">
+                <ul class="list-group">
+                
+                    {%  for item in secondhalf %}
+                        <li class="list-group-item">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">{{ item }}</span>
+                                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                    {%  endfor %}
+                    </ul>
+            </div>
+        <div class="row align-items-center">
+            <div class="col">
+                <h2>Team 1</h2>
+                <ul id="newGroup1">
+                    <!-- New Group 1 content will be inserted here -->
+                </ul>
+            </div>
+            <div class="col">
+                <h2>Team 2</h2>
+                <ul id="newGroup2">
+                    <!-- New Group 2 content will be inserted here -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+        <div class="col-12">
+            <button type="submit" id="generateButton" class="btn btn-primary">Generate</button>
+        </div>
+        <div class="col-12">
+            <button type="submit" id="PlayTeam" 
+                    class="btn btn-primary"
+                    >Play This Team</button>
+        </div>
+        </div>
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const generateButton = document.getElementById("generateButton");
+                const playTeam = document.getElementById("PlayTeam");
+                const newGroup1 = document.getElementById("newGroup1");
+                const newGroup2 = document.getElementById("newGroup2");
+        
+                generateButton.addEventListener("click", function () {
+                    // Collect all input fields
+                    const inputFields = document.querySelectorAll('input[type="text"]');
+                    const inputArray = Array.from(inputFields);
+        
+                    // Shuffle the inputArray randomly
+                    for (let i = inputArray.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [inputArray[i], inputArray[j]] = [inputArray[j], inputArray[i]];
+                    }
+        
+                    // Clear existing new group lists
+                    newGroup1.innerHTML = "";
+                    newGroup2.innerHTML = "";
+        
+                    // Distribute the shuffled inputs into two new groups
+                    const group1Inputs = inputArray.slice(0, 5);
+                    const group2Inputs = inputArray.slice(5, 10);
+        
+                    group1Inputs.forEach(input => {
+                        const listItem = document.createElement("div");
+                        listItem.className = "list-group-item";
+                        listItem.appendChild(input.parentNode.parentNode.cloneNode(true));
+                        newGroup1.appendChild(listItem);
+                    });
+        
+                    group2Inputs.forEach(input => {
+                        const listItem = document.createElement("div");
+                        listItem.className = "list-group-item";
+                        listItem.appendChild(input.parentNode.parentNode.cloneNode(true));
+                        newGroup2.appendChild(listItem);
+                    });
+                });
+
+                playTeam.addEventListener("click",function(){
+                    const currenturl = window.location.href;
+                    const url = currenturl + "/GameSurvey";
+                    window.location.assign(url);
+                });
+
+            });
+        </script>
+        
+  </div>
+    <div>
+    <h1>Generated Teams</h1>
+    <ul class="list-group">
+        {%  for item in teams %}
+            <li class="list-group-item">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">{{ item }}</span>
+                </div>
+        {%  endfor %}
+        </ul>
+    </div>
+
+
+
+{% endblock %} 
